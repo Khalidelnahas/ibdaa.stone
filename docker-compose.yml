@@ -1,9 +1,23 @@
-version: '3.3'
+version: '3.8'
 
 services:
   web:
+    container_name: ibdaa_stone_website
     build: .
     restart: always
+    ports:
+      - "80:80"
     environment:
-      # Creates clickable link in Coolify UI & routes to port 80
       - SERVICE_FQDN_WEB_80
+    # تحديد الموارد لضمان الاستقرار
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    # فحص دوري لصحة الموقع
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
