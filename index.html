@@ -3,39 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إبداع الأحجار - توريد وتركيب الرخام والجرانيت</title>
+    <meta name="description" content="إبداع الأحجار - رواد توريد وتركيب الرخام والجرانيت والحجر الطبيعي في السعودية. خبرة 30 عاماً.">
+    <title>إبداع الأحجار | فن الرخام والجرانيت</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
         .rtl { direction: rtl; }
         .ltr { direction: ltr; }
         [v-cloak] { display: none; }
-        .transition-all { transition: all 0.3s ease; }
-        /* Scroll Smooth */
         html { scroll-behavior: smooth; }
+        /* تأثيرات الصور */
+        .image-overlay { background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); }
     </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        stone: {
-                            50: '#fafaf9',
-                            100: '#f5f5f4',
-                            200: '#e7e5e4',
-                            300: '#d6d3d1',
-                            400: '#a8a29e',
-                            500: '#78716c',
-                            600: '#57534e',
-                            800: '#292524',
-                            900: '#1c1917',     
-                            950: '#0c0a09',     
-                        },
-                        gold: {
-                            500: '#D4AF37', // لون ذهبي للفخامة
-                            600: '#C5A028',
-                        }
+                        stone: { 850: '#1f1c1a', 950: '#0c0a09' },
+                        gold: { 500: '#D4AF37', 600: '#C5A028' }
                     }
                 }
             }
@@ -43,359 +31,166 @@
     </script>
 </head>
 <body class="bg-white text-stone-900 selection:bg-stone-900 selection:text-white">
-    <div id="app" class="min-h-screen transition-all">
-        <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-stone-100">
+    <div id="app" class="min-h-screen">
+        <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-stone-100 transition-all duration-300" id="navbar">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-24">
-                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="setView('home')">
-                        <div class="w-12 h-12 bg-stone-900 rounded-tr-2xl rounded-bl-2xl flex items-center justify-center text-white border-2 border-stone-800">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l18 0"/><path d="M5 21l0 -14l14 0l0 14"/><path d="M17 21l0 -10l-10 0l0 10"/><path d="M9 21l0 -4l6 0l0 4"/></svg>
+                    <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                        <div class="w-12 h-12 bg-stone-900 text-white flex items-center justify-center rounded-tr-2xl rounded-bl-2xl shadow-lg shadow-stone-900/20">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 21v-4h6v4"/></svg>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-bold text-xl tracking-tight text-stone-900 leading-none">إبداع الأحجار</span>
-                            <span class="text-[10px] text-stone-500 font-medium tracking-wide mt-1">EST. 1996</span>
+                            <span class="font-bold text-xl tracking-tight text-stone-900">إبداع الأحجار</span>
+                            <span class="text-[10px] text-stone-500 font-bold tracking-widest uppercase">Est. 1996</span>
                         </div>
                     </div>
-
                     <div class="hidden md:flex items-center gap-8">
-                        <button onclick="setView('home')" id="nav-home" class="text-stone-900 font-bold text-base transition-colors border-b-2 border-stone-900 pb-1">الرئيسية</button>
-                        <a href="#materials" id="nav-materials" class="text-stone-500 hover:text-stone-900 transition-colors font-medium text-base">الخامات</a>
-                        <a href="#services" id="nav-services" class="text-stone-500 hover:text-stone-900 transition-colors font-medium text-base">خدماتنا</a>
-                        <button onclick="setView('contact')" id="nav-contact" class="text-stone-500 hover:text-stone-900 transition-colors font-medium text-base">اطلب عرض سعر</button>
-                        
-                        <div class="flex items-center border border-stone-200 rounded-full px-1 p-1 bg-stone-50">
-                            <button onclick="setLang('en')" class="lang-btn en px-3 py-1 rounded-full text-xs font-bold uppercase transition-all text-stone-400 hover:text-stone-600">EN</button>
-                            <button onclick="setLang('ar')" class="lang-btn ar px-3 py-1 rounded-full text-xs font-bold uppercase transition-all bg-stone-900 text-white shadow-md">AR</button>
-                        </div>
-
-                        <button onclick="setView('contact')" class="bg-stone-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-stone-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2" id="nav-cta">
-                            <span>تواصل معنا</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </button>
-                    </div>
-
-                    <div class="md:hidden flex items-center gap-4">
-                        <button onclick="toggleMenu()" class="text-stone-600 p-2 hover:bg-stone-100 rounded-lg transition-colors">
-                            <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-                        </button>
+                        <a href="#home" class="text-stone-900 font-bold hover:text-gold-600 transition-colors">الرئيسية</a>
+                        <a href="#materials" class="text-stone-500 hover:text-stone-900 font-medium transition-colors">المعرض</a>
+                        <a href="#services" class="text-stone-500 hover:text-stone-900 font-medium transition-colors">الخدمات</a>
+                        <a href="#contact" class="bg-stone-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-stone-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">تواصل معنا</a>
                     </div>
                 </div>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-stone-100 shadow-xl px-4 py-6 space-y-4 absolute w-full">
-                <button onclick="setView('home'); toggleMenu();" class="block text-stone-800 font-bold text-lg w-full text-right py-2 border-b border-stone-50" id="m-nav-home">الرئيسية</button>
-                <a href="#materials" class="block text-stone-600 font-medium py-2" onclick="toggleMenu()" id="m-nav-materials">الخامات</a>
-                <a href="#services" class="block text-stone-600 font-medium py-2" onclick="toggleMenu()" id="m-nav-services">الخدمات</a>
-                <button onclick="setView('contact'); toggleMenu();" class="block text-stone-600 font-medium w-full text-right py-2" id="m-nav-contact">اتصل بنا</button>
             </div>
         </nav>
 
-        <main id="main-content">
-            <div id="home-view">
-                <section class="pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden">
-                    <div class="absolute top-20 right-0 -z-10 opacity-5">
-                        <svg width="400" height="400" viewBox="0 0 200 200"><path fill="#78716c" d="M45,-76.3C58.9,-69.3,71.4,-59.1,79.8,-46.8C88.2,-34.5,92.5,-20.1,89.6,-6.9C86.7,6.3,76.6,18.3,66.4,29.1C56.2,39.9,45.9,49.5,34.4,56.7C22.9,63.9,10.2,68.7,-1.8,71.8C-13.8,74.9,-28.9,76.3,-41.8,70.5C-54.7,64.7,-65.4,51.7,-72.6,37.3C-79.8,22.9,-83.5,7.1,-80.7,-7.1C-77.9,-21.3,-68.6,-33.9,-57.4,-43.3C-46.2,-52.7,-33.1,-58.9,-20.4,-67.2C-7.7,-75.5,4.6,-85.9,18.4,-86.6C32.2,-87.3,47.5,-78.3,45,-76.3Z" transform="translate(100 100)" /></svg>
-                    </div>
-
-                    <div class="text-center max-w-5xl mx-auto">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-100 border border-stone-200 text-stone-600 text-xs font-bold mb-8 uppercase tracking-wide shadow-sm" id="hero-badge">
-                            <span class="w-2 h-2 rounded-full bg-stone-900"></span>
-                            خبرة تتجاوز 30 عاماً في السوق السعودي
-                        </div>
-                        <h1 class="text-5xl md:text-7xl font-bold text-stone-900 leading-[1.1] mb-8 tracking-tight font-tajawal" id="hero-title">
-                            الفخامة تبدأ من <span class="text-transparent bg-clip-text bg-gradient-to-r from-stone-600 to-stone-900">حجر الأساس</span>
-                        </h1>
-                        <p class="text-xl md:text-2xl text-stone-500 mb-12 leading-relaxed max-w-3xl mx-auto font-light" id="hero-subtitle">
-                            نحول الكتل الصخرية الصماء إلى تحف معمارية. متخصصون في توريد وتركيب أرقى أنواع الرخام والحجر والجرانيت للقصور والمشاريع التجارية.
-                        </p>
-                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <button onclick="setView('contact')" class="w-full sm:w-auto px-10 py-4 bg-stone-900 text-white rounded-xl font-bold hover:bg-stone-800 transition-all shadow-xl shadow-stone-200" id="hero-cta-primary">اطلب استشارة مجانية</button>
-                            <a href="#services" class="w-full sm:w-auto px-10 py-4 bg-white text-stone-600 border border-stone-200 rounded-xl font-bold hover:border-stone-400 hover:bg-stone-50 transition-all" id="hero-cta-secondary">شاهد أعمالنا</a>
-                        </div>
-                    </div>
-
-                    <div id="materials" class="mt-24 border-t border-stone-100 pt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div class="group p-6 rounded-2xl hover:bg-stone-50 transition-colors cursor-default">
-                            <div class="w-16 h-16 mx-auto bg-stone-100 rounded-2xl flex items-center justify-center text-stone-700 mb-4 group-hover:bg-white group-hover:shadow-md transition-all">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                            </div>
-                            <h3 class="font-bold text-stone-900 mb-2">رخام إيطالي وتركي</h3>
-                            <span class="text-stone-500 text-sm">أفضل المحاجر العالمية</span>
-                        </div>
-                        <div class="group p-6 rounded-2xl hover:bg-stone-50 transition-colors cursor-default">
-                            <div class="w-16 h-16 mx-auto bg-stone-100 rounded-2xl flex items-center justify-center text-stone-700 mb-4 group-hover:bg-white group-hover:shadow-md transition-all">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M8 21V12a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9"/></svg>
-                            </div>
-                            <h3 class="font-bold text-stone-900 mb-2">حجر طبيعي</h3>
-                            <span class="text-stone-500 text-sm">للواجهات والفلل</span>
-                        </div>
-                        <div class="group p-6 rounded-2xl hover:bg-stone-50 transition-colors cursor-default">
-                            <div class="w-16 h-16 mx-auto bg-stone-100 rounded-2xl flex items-center justify-center text-stone-700 mb-4 group-hover:bg-white group-hover:shadow-md transition-all">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                            </div>
-                            <h3 class="font-bold text-stone-900 mb-2">جرانيت صلب</h3>
-                            <span class="text-stone-500 text-sm">للمطابخ والأرضيات</span>
-                        </div>
-                        <div class="group p-6 rounded-2xl hover:bg-stone-50 transition-colors cursor-default">
-                            <div class="w-16 h-16 mx-auto bg-stone-100 rounded-2xl flex items-center justify-center text-stone-700 mb-4 group-hover:bg-white group-hover:shadow-md transition-all">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            </div>
-                            <h3 class="font-bold text-stone-900 mb-2">تنفيذ ميكانيكي</h3>
-                            <span class="text-stone-500 text-sm">ضمان الجودة والمتانة</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="services" class="py-24 bg-stone-50 border-t border-stone-200">
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="mb-16 text-center md:text-right">
-                            <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-4" id="serv-title">حلول متكاملة لمشروعك</h2>
-                            <p class="text-stone-500 max-w-2xl font-light text-lg" id="serv-subtitle">سواء كنت تبني فيلتك الخاصة أو مشروعاً تجارياً ضخماً، لدينا الخبرة والموارد للتنفيذ.</p>
-                        </div>
-                        
-                        <div class="grid lg:grid-cols-2 gap-8">
-                            <div class="bg-white rounded-3xl p-10 border border-stone-200 hover:border-stone-400 hover:shadow-2xl transition-all duration-300 relative overflow-hidden group">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-stone-100 rounded-bl-[100px] -z-0 group-hover:scale-110 transition-transform"></div>
-                                <h3 class="text-2xl font-bold text-stone-900 relative z-10" id="serv-r-title">قطاع الأفراد والفلل</h3>
-                                <p class="text-stone-500 my-6 leading-relaxed relative z-10" id="serv-r-desc">نحول منزلك إلى تحفة فنية باستخدام أرقى أنواع الرخام للأرضيات والحجر الطبيعي للواجهات، مع اهتمام فائق بالتفاصيل الدقيقة.</p>
-                                <ul class="space-y-4 mb-10 text-stone-700 relative z-10" id="serv-r-list">
-                                    <li class="flex items-center gap-3"><svg class="text-stone-900" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> تصميم وتنفيذ الواجهات الحجرية</li>
-                                    <li class="flex items-center gap-3"><svg class="text-stone-900" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> تركيب رخام الأرضيات (Open Book)</li>
-                                    <li class="flex items-center gap-3"><svg class="text-stone-900" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> مغاسل وجرانيت مطابخ</li>
-                                </ul>
-                                <button onclick="setView('contact')" class="w-full py-4 bg-stone-900 text-white rounded-xl font-bold hover:bg-stone-800 transition-colors relative z-10" id="serv-r-cta">اطلب معاينة للموقع</button>
-                            </div>
-
-                            <div class="bg-stone-900 rounded-3xl p-10 border border-stone-800 text-white relative overflow-hidden">
-                                <h3 class="text-2xl font-bold mb-2" id="serv-c-title">المشاريع التجارية</h3>
-                                <p class="text-stone-400 my-6 leading-relaxed" id="serv-c-desc">توريد كميات ضخمة وتنفيذ مشاريع الأبراج والمجمعات التجارية والعمائر السكنية بأسعار منافسة وجداول زمنية دقيقة.</p>
-                                <ul class="space-y-4 mb-10 text-stone-300" id="serv-c-list">
-                                    <li class="flex items-center gap-3"><svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> توريد الحجر العماني والرياض</li>
-                                    <li class="flex items-center gap-3"><svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> تركيب ميكانيكي آمن (Mechanical)</li>
-                                    <li class="flex items-center gap-3"><svg class="text-white" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> جلي وتلميع المساحات الكبرى</li>
-                                </ul>
-                                <button onclick="setView('contact')" class="w-full py-4 bg-white text-stone-900 rounded-xl font-bold hover:bg-stone-200 transition-colors" id="serv-c-cta">تواصل مع قسم المشاريع</button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <section id="home" class="pt-40 pb-20 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-50 border border-stone-200 text-stone-600 text-xs font-bold mb-8 uppercase tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+                    خبرة تتجاوز 30 عاماً في السوق السعودي
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-stone-900 mb-8 leading-tight font-tajawal">
+                    الفخامة تبدأ من <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-stone-600 to-stone-900">حجر الأساس</span>
+                </h1>
+                <p class="text-xl text-stone-500 mb-12 max-w-2xl mx-auto font-light">
+                    نحول الكتل الصخرية الصماء إلى تحف معمارية. متخصصون في توريد وتركيب أرقى أنواع الرخام والحجر والجرانيت للقصور والمشاريع الكبرى.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#contact" class="px-8 py-4 bg-stone-900 text-white rounded-xl font-bold shadow-xl shadow-stone-200 hover:bg-stone-800 transition-all">اطلب استشارة</a>
+                    <a href="#materials" class="px-8 py-4 bg-white border border-stone-200 text-stone-600 rounded-xl font-bold hover:bg-stone-50 transition-all">شاهد الخامات</a>
+                </div>
             </div>
+        </section>
 
-            <div id="contact-view" class="hidden">
-                <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[80vh]">
-                    <div class="grid md:grid-cols-2 gap-16">
+        <section id="materials" class="py-24 px-4 bg-stone-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-4">تشكيلة النخبة</h2>
+                    <p class="text-stone-500">انتقيناها بعناية من أفضل المحاجر العالمية</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+                    <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-3xl shadow-sm bg-white cursor-pointer hover:shadow-2xl transition-all duration-500">
+                        <div class="absolute inset-0 bg-stone-300 animate-pulse"></div> <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 relative z-10" alt="Italian Marble">
+                        <div class="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-transparent to-transparent z-20 flex flex-col justify-end p-8">
+                            <h3 class="text-white text-2xl font-bold mb-1">الرخام الإيطالي (Statuario)</h3>
+                            <p class="text-stone-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">البياض الناصع مع العروق الرمادية، الخيار الأول للقصور.</p>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-3xl bg-white border border-stone-100 p-6 flex flex-col justify-between hover:border-stone-300 transition-colors">
+                        <div class="w-12 h-12 bg-stone-100 rounded-xl flex items-center justify-center text-stone-600 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V7l8-4 8 4v14"/></svg>
+                        </div>
                         <div>
-                            <div class="inline-block px-3 py-1 bg-stone-100 text-stone-600 rounded-lg text-xs font-bold mb-4">خدمة العملاء</div>
-                            <h1 class="text-4xl font-bold text-stone-900 mb-6" id="con-title">ابدأ مشروعك معنا</h1>
-                            <p class="text-stone-500 mb-12 text-lg leading-relaxed" id="con-subtitle">نحن هنا للإجابة على استفساراتك وتقديم استشارات فنية مجانية حول أفضل خامات الحجر والرخام المناسبة لميزانيتك.</p>
-                            
-                            <div class="space-y-8">
-                                <div class="flex items-start gap-5">
-                                    <div class="p-4 bg-stone-100 rounded-2xl text-stone-900 shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm uppercase tracking-wider text-stone-400 mb-1">اتصال مباشر</h4>
-                                        <p class="text-stone-900 font-bold text-lg dir-ltr text-right">+966 50 000 0000</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start gap-5">
-                                    <div class="p-4 bg-stone-100 rounded-2xl text-stone-900 shrink-0">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm uppercase tracking-wider text-stone-400 mb-1">البريد الإلكتروني</h4>
-                                        <p class="text-stone-900 font-medium">sales@ebda-stone.com</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <h3 class="font-bold text-stone-900 text-lg">حجر الرياض الطبيعي</h3>
+                            <span class="text-xs text-stone-500 font-bold uppercase tracking-wider mt-2 block">للواجهات الفاخرة</span>
                         </div>
+                    </div>
 
-                        <div class="bg-white p-8 md:p-10 rounded-[2rem] border border-stone-200 shadow-xl shadow-stone-100/50">
-                            <form id="contact-form" class="space-y-6" onsubmit="handleContact(event)">
-                                <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2" id="label-name">الاسم الكريم</label>
-                                    <input type="text" required class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 outline-none focus:border-stone-900 focus:bg-white transition-all">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2" id="label-phone">رقم الجوال</label>
-                                    <input type="tel" required class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 outline-none focus:border-stone-900 focus:bg-white transition-all text-right" placeholder="05xxxxxxxx">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2" id="label-msg">تفاصيل المشروع (نوع الحجر، المساحة التقريبية)</label>
-                                    <textarea rows="4" required class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 outline-none focus:border-stone-900 focus:bg-white transition-all resize-none"></textarea>
-                                </div>
-                                <button type="submit" class="w-full py-4 bg-stone-900 text-white rounded-xl font-bold hover:bg-stone-800 transition-all flex items-center justify-center gap-3 text-lg shadow-lg hover:shadow-stone-400/50" id="btn-send">
-                                    <span>إرسال الطلب</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                                </button>
-                            </form>
-                            <div id="form-success" class="hidden h-full flex flex-col items-center justify-center text-center py-12">
-                                <div class="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6 border border-green-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <h3 class="text-2xl font-bold text-stone-900 mb-2">تم استلام طلبك!</h3>
-                                <p class="text-stone-500" id="txt-success">سيقوم أحد مهندسينا بالتواصل معك خلال 24 ساعة.</p>
-                            </div>
-                        </div>
+                    <div class="md:col-span-1 md:row-span-1 bg-stone-900 rounded-3xl p-8 flex flex-col justify-center text-white relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-stone-800 rounded-full blur-2xl -mr-10 -mt-10 transition-all group-hover:bg-stone-700"></div>
+                        <h3 class="font-bold text-xl z-10 relative">جرانيت للمطابخ</h3>
+                        <p class="text-stone-400 text-sm z-10 mt-3 relative leading-relaxed">صلابة فائقة ومقاومة للحرارة والخدوش.</p>
                     </div>
-                </section>
-            </div>
-        </main>
 
-        <footer class="bg-stone-900 text-stone-400 py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid md:grid-cols-4 gap-12 border-b border-stone-800 pb-12 mb-12">
-                    <div class="col-span-2">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-stone-900">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l8-4 8 4v14"/><path d="M8 21V12a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9"/></svg>
-                            </div>
-                            <span class="font-bold text-2xl text-white">إبداع الأحجار</span>
+                    <div class="md:col-span-2 bg-white rounded-3xl p-8 flex flex-col sm:flex-row items-center justify-between border border-stone-100 shadow-sm gap-6">
+                        <div>
+                            <h3 class="font-bold text-stone-900 text-lg mb-1">خدمة القص المائي (Waterjet)</h3>
+                            <p class="text-stone-500 text-sm">تنفيذ زخارف هندسية إسلامية وكلاسيكية للأرضيات بدقة متناهية.</p>
                         </div>
-                        <p class="text-stone-400 max-w-sm leading-relaxed mb-6" id="footer-desc">مؤسسة رائدة في مجال توريد وتركيب الرخام والحجر الطبيعي والجرانيت. خبرة تمتد لثلاثة عقود في خدمة قطاع المقاولات السعودي.</p>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-6">روابط سريعة</h4>
-                        <ul class="space-y-4">
-                            <li><button onclick="setView('home')" class="hover:text-white transition-colors">الرئيسية</button></li>
-                            <li><a href="#services" class="hover:text-white transition-colors">خدماتنا</a></li>
-                            <li><a href="#materials" class="hover:text-white transition-colors">الخامات</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-white font-bold mb-6">تواصل معنا</h4>
-                        <ul class="space-y-4">
-                            <li>الرياض، المملكة العربية السعودية</li>
-                            <li class="dir-ltr text-right">+966 50 000 0000</li>
-                            <li>info@ebda-stone.com</li>
-                        </ul>
+                        <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-stone-100 text-stone-900 px-6 py-3 rounded-xl font-bold text-sm hover:bg-stone-200 transition-colors whitespace-nowrap">اطلب تصميم خاص</button>
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                    <p id="footer-rights">© 2026 مؤسسة إبداع الأحجار. جميع الحقوق محفوظة.</p>
+            </div>
+        </section>
+
+        <section id="services" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-gold-600 font-bold tracking-wider uppercase text-sm">خدماتنا</span>
+                        <h2 class="text-4xl font-bold text-stone-900 mt-2 mb-6">حلول متكاملة لمشروعك</h2>
+                        <p class="text-stone-500 text-lg leading-relaxed mb-8">
+                            سواء كنت تبني فيلتك الخاصة أو مشروعاً تجارياً ضخماً، لدينا فريق هندسي متكامل للإشراف على التوريد والتركيب لضمان أعلى معايير الجودة.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                                توريد وتركيب ميكانيكي آمن (Mechanical Fixing)
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                                جلي وتلميع الرخام بأحدث المعدات الإيطالية
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700">
+                                <span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs">✓</span>
+                                إشراف هندسي كامل على المواقع
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-stone-50 rounded-[2rem] p-8 border border-stone-100 relative">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
+                                <span class="block text-3xl font-bold text-stone-900 mb-1">+30</span>
+                                <span class="text-sm text-stone-500">عاماً من الخبرة</span>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl shadow-sm text-center">
+                                <span class="block text-3xl font-bold text-stone-900 mb-1">+500</span>
+                                <span class="text-sm text-stone-500">مشروع ناجح</span>
+                            </div>
+                            <div class="col-span-2 bg-stone-900 text-white p-6 rounded-2xl text-center">
+                                <span class="block text-xl font-bold mb-1">ضمان شامل</span>
+                                <span class="text-sm text-stone-400">على التركيب وجودة المواد</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
+
+        <section id="contact" class="py-24 bg-stone-900 text-white">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-6">ابدأ مشروعك معنا</h2>
+                <p class="text-stone-400 text-lg mb-12">فريقنا الهندسي جاهز لتقديم استشارة مجانية وعرض سعر يناسب ميزانيتك.</p>
+                
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl max-w-2xl mx-auto">
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('تم استلام طلبك، سنتواصل معك قريباً!');">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="الاسم الكريم" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-stone-500 transition-colors">
+                            <input type="tel" placeholder="رقم الجوال" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-stone-500 transition-colors text-right">
+                        </div>
+                        <textarea rows="4" placeholder="تفاصيل المشروع (مثال: واجهة فيلا حجر رياض، مساحة 400 متر)" class="w-full bg-stone-800 border border-stone-700 rounded-xl px-4 py-3 text-white placeholder-stone-500 focus:outline-none focus:border-stone-500 transition-colors"></textarea>
+                        <button type="submit" class="w-full bg-white text-stone-900 font-bold py-4 rounded-xl hover:bg-stone-200 transition-colors">إرسال الطلب</button>
+                    </form>
+                    <div class="mt-8 flex items-center justify-center gap-8 text-sm text-stone-400 border-t border-white/10 pt-8">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span dir="ltr">+966 50 000 0000</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span>sales@ebda-stone.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-stone-950 text-stone-600 py-8 text-center text-sm border-t border-stone-900">
+            <p>© 2026 مؤسسة إبداع الأحجار. جميع الحقوق محفوظة.</p>
         </footer>
     </div>
-
-    <script>
-        const content = {
-            en: {
-                dir: 'ltr',
-                nav: { home: "Home", materials: "Materials", services: "Services", contact: "Request Quote", cta: "Contact Us" },
-                hero: { badge: "Over 30 Years Experience", title: "Luxury Starts with the Foundation", subtitle: "Transforming raw stone into architectural masterpieces. Specialists in supply and installation of premium marble, stone, and granite.", cta1: "Free Consultation", cta2: "View Portfolio" },
-                mat: { m1: "Italian Marble", m1d: "Premium Global Quarries", m2: "Natural Stone", m2d: "For Villas & Facades", m3: "Granite", m3d: "Kitchens & Heavy Duty", m4: "Mechanical", m4d: "Engineered Fixing" },
-                serv: { title: "Complete Stone Solutions", sub: "Whether building a private villa or a commercial tower, we have the expertise.", 
-                        rt: "Residential & Villas", rd: "Turning your home into an art piece with premium flooring and stone facades.", rl: ["Stone Facade Design", "Open Book Flooring", "Kitchen Countertops"], rcta: "Request Site Visit",
-                        ct: "Commercial Projects", cd: "Supply and installation for towers and malls with competitive pricing and strict timelines.", cl: ["Omani & Riyadh Stone", "Mechanical Fixation", "Large Scale Polishing"], ccta: "Contact Projects Dept" },
-                con: { title: "Start Your Project", sub: "We are here to answer your questions and provide technical consultation.", n: "Your Name", p: "Phone Number", m: "Project Details", s: "Send Request", ok: "Request Received! We will contact you within 24 hours." },
-                foot: { desc: "Leading establishment in supply and installation of marble and natural stone. Three decades of serving the Saudi construction sector.", r: "© 2026 Ebda Al-Ahjar. All rights reserved." }
-            },
-            ar: {
-                dir: 'rtl',
-                nav: { home: "الرئيسية", materials: "الخامات", services: "خدماتنا", contact: "اطلب عرض سعر", cta: "تواصل معنا" },
-                hero: { badge: "خبرة تتجاوز 30 عاماً", title: "الفخامة تبدأ من حجر الأساس", subtitle: "نحول الكتل الصخرية الصماء إلى تحف معمارية. متخصصون في توريد وتركيب أرقى أنواع الرخام والحجر والجرانيت للقصور والمشاريع التجارية.", cta1: "اطلب استشارة مجانية", cta2: "شاهد أعمالنا" },
-                mat: { m1: "رخام إيطالي وتركي", m1d: "أفضل المحاجر العالمية", m2: "حجر طبيعي", m2d: "للواجهات والفلل", m3: "جرانيت صلب", m3d: "للمطابخ والأرضيات", m4: "تنفيذ ميكانيكي", m4d: "ضمان الجودة والمتانة" },
-                serv: { title: "حلول متكاملة لمشروعك", sub: "سواء كنت تبني فيلتك الخاصة أو مشروعاً تجارياً ضخماً، لدينا الخبرة والموارد للتنفيذ.", 
-                        rt: "قطاع الأفراد والفلل", rd: "نحول منزلك إلى تحفة فنية باستخدام أرقى أنواع الرخام للأرضيات والحجر الطبيعي للواجهات.", rl: ["تصميم وتنفيذ الواجهات", "تركيب رخام الأرضيات", "مغاسل وجرانيت مطابخ"], rcta: "اطلب معاينة للموقع",
-                        ct: "المشاريع التجارية", cd: "توريد كميات ضخمة وتنفيذ مشاريع الأبراج والمجمعات التجارية بأسعار منافسة وجداول زمنية دقيقة.", cl: ["توريد الحجر العماني والرياض", "تركيب ميكانيكي آمن", "جلي وتلميع المساحات"], ccta: "تواصل مع قسم المشاريع" },
-                con: { title: "ابدأ مشروعك معنا", sub: "نحن هنا للإجابة على استفساراتك وتقديم استشارات فنية مجانية حول أفضل خامات الحجر والرخام.", n: "الاسم الكريم", p: "رقم الجوال", m: "تفاصيل المشروع (نوع الحجر، المساحة)", s: "إرسال الطلب", ok: "تم استلام طلبك! سيقوم أحد مهندسينا بالتواصل معك قريباً." },
-                foot: { desc: "مؤسسة رائدة في مجال توريد وتركيب الرخام والحجر الطبيعي والجرانيت. خبرة تمتد لثلاثة عقود في خدمة قطاع المقاولات السعودي.", r: "© 2026 مؤسسة إبداع الأحجار. جميع الحقوق محفوظة." }
-            }
-        };
-
-        let currentLang = 'ar';
-        let currentView = 'home';
-
-        function setLang(l) {
-            currentLang = l;
-            const t = content[l];
-            document.documentElement.lang = l;
-            document.documentElement.dir = t.dir;
-            document.body.className = t.dir === 'rtl' ? 'rtl bg-white text-stone-900' : 'ltr bg-white text-stone-900';
-
-            // Updates elements text content
-            document.getElementById('nav-home').innerText = t.nav.home;
-            document.getElementById('nav-materials').innerText = t.nav.materials;
-            document.getElementById('nav-services').innerText = t.nav.services;
-            document.getElementById('nav-contact').innerText = t.nav.contact;
-            document.getElementById('nav-cta').querySelector('span').innerText = t.nav.cta;
-            
-            // Hero
-            document.getElementById('hero-badge').innerHTML = `<span class="w-2 h-2 rounded-full bg-stone-900 inline-block mx-1"></span> ${t.hero.badge}`;
-            document.getElementById('hero-title').innerText = t.hero.title; // Note: formatting might be lost on plain text switch, simple replacement here
-            document.getElementById('hero-subtitle').innerText = t.hero.subtitle;
-            document.getElementById('hero-cta-primary').innerText = t.hero.cta1;
-            document.getElementById('hero-cta-secondary').innerText = t.hero.cta2;
-
-            // Services
-            document.getElementById('serv-title').innerText = t.serv.title;
-            document.getElementById('serv-subtitle').innerText = t.serv.sub;
-            
-            document.getElementById('serv-r-title').innerText = t.serv.rt;
-            document.getElementById('serv-r-desc').innerText = t.serv.rd;
-            document.getElementById('serv-r-cta').innerText = t.serv.rcta;
-            // Update List Items Residential
-            const rList = document.getElementById('serv-r-list').children;
-            if(rList.length === t.serv.rl.length) {
-                for(let i=0; i<rList.length; i++) rList[i].lastChild.textContent = " " + t.serv.rl[i];
-            }
-
-            document.getElementById('serv-c-title').innerText = t.serv.ct;
-            document.getElementById('serv-c-desc').innerText = t.serv.cd;
-            document.getElementById('serv-c-cta').innerText = t.serv.ccta;
-             // Update List Items Commercial
-             const cList = document.getElementById('serv-c-list').children;
-            if(cList.length === t.serv.cl.length) {
-                for(let i=0; i<cList.length; i++) cList[i].lastChild.textContent = " " + t.serv.cl[i];
-            }
-
-            // Contact
-            document.getElementById('con-title').innerText = t.con.title;
-            document.getElementById('con-subtitle').innerText = t.con.sub;
-            document.getElementById('label-name').innerText = t.con.n;
-            document.getElementById('label-phone').innerText = t.con.p;
-            document.getElementById('label-msg').innerText = t.con.m;
-            document.getElementById('btn-send').querySelector('span').innerText = t.con.s;
-            document.getElementById('txt-success').innerText = t.con.ok;
-
-            // Footer
-            document.getElementById('footer-desc').innerText = t.foot.desc;
-            document.getElementById('footer-rights').innerText = t.foot.r;
-
-            // Language Btn classes
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('bg-stone-900', 'text-white', 'shadow-md');
-                btn.classList.add('text-stone-400');
-            });
-            document.querySelector(`.lang-btn.${l}`).classList.add('bg-stone-900', 'text-white', 'shadow-md');
-            document.querySelector(`.lang-btn.${l}`).classList.remove('text-stone-400');
-        }
-
-        function setView(v) {
-            currentView = v;
-            document.getElementById('home-view').classList.toggle('hidden', v !== 'home');
-            document.getElementById('contact-view').classList.toggle('hidden', v !== 'contact');
-            
-            document.getElementById('nav-home').classList.toggle('border-b-2', v === 'home');
-            document.getElementById('nav-contact').classList.toggle('border-b-2', v === 'contact');
-            window.scrollTo(0, 0);
-        }
-
-        function toggleMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-
-        function handleContact(e) {
-            e.preventDefault();
-            document.getElementById('contact-form').classList.add('hidden');
-            document.getElementById('form-success').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('contact-form').classList.remove('hidden');
-                document.getElementById('form-success').classList.add('hidden');
-                document.getElementById('contact-form').reset();
-            }, 5000);
-        }
-    </script>
 </body>
 </html>
